@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import OrbScene from "./components/OrbScene";
 import ParticlesScene from "./components/ParticlesScene";
+import LiquidOrbsScene from "./components/LiquidOrbsScene";
 
 type GalleryItem = {
   title: string;
@@ -125,6 +126,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState(sections[0].id);
   const [showTop, setShowTop] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const contactOrbPointer = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -322,6 +324,29 @@ export default function App() {
             Possuo um perfil interdisciplinar <strong>pautado pela organização</strong>,
             <strong> criatividade</strong> e <strong>adaptabilidade</strong>.
           </p>
+          <div className="about-social">
+            <a href="#" aria-label="Instagram" className="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 5.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  fill="none"
+                />
+                <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" className="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="9" width="3.5" height="11" fill="currentColor" />
+                <rect x="4" y="4" width="3.5" height="3.5" fill="currentColor" />
+                <path
+                  d="M10.5 9H14a4 4 0 0 1 4 4v7h-3.5v-6a2 2 0 0 0-2-2h-2v8h-3.5V9z"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -329,6 +354,7 @@ export default function App() {
         <div className="timeline-title">
           <span>Um breve histórico profissional</span>
         </div>
+        <LiquidOrbsScene className="timeline-3d" />
         <div className="timeline-track">
           {timelineItems.map((item, index) => (
             <article
@@ -399,7 +425,23 @@ export default function App() {
         </div>
       </section>
 
-      <section className="contact section" id="contato" data-reveal style={revealStyle(0.1)}>
+      <section
+        className="contact section"
+        id="contato"
+        data-reveal
+        style={revealStyle(0.1)}
+        onPointerMove={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          contactOrbPointer.current.x = x;
+          contactOrbPointer.current.y = y;
+        }}
+        onPointerLeave={() => {
+          contactOrbPointer.current.x = 0;
+          contactOrbPointer.current.y = 0;
+        }}
+      >
         <div className="contact-inner">
           <div>
             <h2>Vamos bater um papo?</h2>
@@ -439,7 +481,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <OrbScene className="contact-orbs" />
+        <OrbScene className="contact-orbs" scale={1.35} pointerRef={contactOrbPointer} />
       </section>
 
       <nav className="section-indicator" aria-label="Seções">
@@ -465,13 +507,7 @@ export default function App() {
         onClick={handleScrollTop}
         aria-label="Voltar ao topo"
       >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M12 5l6.5 6.5-1.8 1.8L12 8.6l-4.7 4.7-1.8-1.8L12 5z"
-            fill="currentColor"
-          />
-          <rect x="6.5" y="15.5" width="11" height="2" rx="1" fill="currentColor" />
-        </svg>
+        Voltar ao topo
       </button>
 
       {activeItem && (

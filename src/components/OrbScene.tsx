@@ -49,8 +49,10 @@ function Orb({
 
 function OrbCluster({
   pointerRef,
+  scale = 1,
 }: {
   pointerRef?: MutableRefObject<{ x: number; y: number }>;
+  scale?: number;
 }) {
   const group = useRef<Group>(null);
 
@@ -61,7 +63,7 @@ function OrbCluster({
   });
 
   return (
-    <group ref={group}>
+    <group ref={group} scale={scale}>
       {orbs.map((orb) => (
         <Orb key={orb.position.join("-")} {...orb} />
       ))}
@@ -72,9 +74,11 @@ function OrbCluster({
 export default function OrbScene({
   className,
   pointerRef,
+  scale,
 }: {
   className?: string;
   pointerRef?: MutableRefObject<{ x: number; y: number }>;
+  scale?: number;
 }) {
   return (
     <Canvas
@@ -84,7 +88,7 @@ export default function OrbScene({
     >
       <ambientLight intensity={0.7} />
       <directionalLight position={[4, 3, 4]} intensity={1.1} />
-      <OrbCluster pointerRef={pointerRef} />
+      <OrbCluster pointerRef={pointerRef} scale={scale} />
     </Canvas>
   );
 }
