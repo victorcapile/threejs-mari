@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5d1cb"/>
+      <stop offset="100%" stop-color="#d5b3a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <circle cx="900" cy="200" r="140" fill="#f1b8ac" opacity="0.5"/>
+  <circle cx="300" cy="560" r="180" fill="#9ac7d6" opacity="0.35"/>
+  <text x="60" y="120" font-size="54" font-family="Playfair Display, serif" fill="#5a4f49">Imagem placeholder</text>
+  <text x="60" y="190" font-size="26" font-family="Montserrat, sans-serif" fill="#5a4f49">Substitua por foto real</text>
+</svg>
