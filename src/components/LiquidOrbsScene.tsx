@@ -1,6 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import { Color, MeshStandardMaterial } from "three";
+import { MeshStandardMaterial, Color } from "three";
 import { MarchingCubes } from "three/examples/jsm/objects/MarchingCubes.js";
 
 type Orb = {
@@ -46,7 +46,7 @@ function Metaballs() {
       const y = 0.5 + Math.cos(phase * 0.9 + index) * 0.22;
       const z = 0.5 + Math.sin(phase * 0.7 + index) * 0.22;
 
-      marching.addBall(x, y, z, orb.radius, 0.2, orb.color);
+      marching.addBall(x, y, z, orb.radius, 0.2, new Color(orb.color));
     });
 
     marching.update();
