@@ -6,7 +6,13 @@ import type { MutableRefObject } from "react";
 
 const palette = ["#f6b8b0", "#f2d6cf", "#9ac7d6", "#e5c1b7", "#f4e6df"];
 
-const orbs = [
+type OrbConfig = {
+  position: [number, number, number];
+  size: number;
+  color: string;
+};
+
+const orbs: OrbConfig[] = [
   { position: [-2.0, 0.6, 0.1], size: 0.55, color: palette[0] },
   { position: [-1.2, 1.4, -0.6], size: 0.4, color: palette[1] },
   { position: [-0.2, -0.6, 0.2], size: 0.5, color: palette[2] },

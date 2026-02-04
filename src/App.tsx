@@ -280,12 +280,20 @@ export default function App() {
           </h1>
           <p className="hero-subtitle">COMUNICAÇÃO | MARKETING | AUDIOVISUAL</p>
           <div className="hero-actions">
-            <a className="btn primary" href="#galeria">
+            <button
+              type="button"
+              className="btn primary"
+              onClick={() => handleScrollTo("galeria")}
+            >
               Ver trabalhos
-            </a>
-            <a className="btn ghost" href="#contato">
+            </button>
+            <button
+              type="button"
+              className="btn ghost"
+              onClick={() => handleScrollTo("contato")}
+            >
               Entrar em contato
-            </a>
+            </button>
           </div>
         </div>
       </header>
